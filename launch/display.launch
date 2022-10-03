@@ -1,0 +1,11 @@
+<launch>
+<include file="$(find navvis_description)/launch/display.launch">
+
+<arg name="use_xacro" value="true"/>
+<arg name="use_robot_state_publisher" value= "true"/>
+<arg name="file" value="$(find bagged_package)/urdf/new_robot.xacro"/>
+<arg name="filename" value="new_robot.xacro"/>
+</include>
+<node pkg="rosbag" type="play" name="play_bag" output="screen" args="--clock $(find bagged_package)/bags/glennan_5_basic.bag /tf_trajectory:=/tf"/>
+<node pkg="map_server" type="map_server" name="map_server" args="$(find maps_glennan)/maps/glennan5_map.yaml" />
+</launch>
